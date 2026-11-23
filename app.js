@@ -29,6 +29,11 @@ app.get("/listing", async (req, res) => {
   const allList = await Listing.find({});
   res.render("index", { allLists: allList });
 });
+app.get("/listing/:id/page", async (req, res) => {
+  const { id } = req.params;
+  const allList = await Listing.find({});
+  res.render("page", { allLists: allList, id });
+});
 
 app.listen(8080, () => {
   console.log("server is listing to port 8080");

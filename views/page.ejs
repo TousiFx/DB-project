@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= listing.title %> - Details</title>
+    <link rel="stylesheet" href="/show.css" />
+    <link rel="stylesheet" href="https://cloudflare.com" />
+    <link href="https://googleapis.com" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div class="listing-container">
+      <!-- Back Navigation -->
+      <a href="/listings" class="back-link">
+        <i class="fa-solid fa-arrow-left"></i> Back to Explore Stays
+      </a>
+
+      <!-- Header Section -->
+      <div class="header-row">
+        <div class="title-area">
+          <div class="badge-row">
+            <span class="star-badge">4 <i class="fa-solid fa-star"></i></span>
+            <span class="dot">•</span>
+            <span class="property-type">Resort</span>
+          </div>
+          <h1 class="hotel-name"><%= listing.title %></h1>
+          <div class="location-info">
+            <span>
+              <span class="location-dot"></span>
+              <%= listing.location %>, <%= listing.country %>
+            </span>
+            <span class="divider">|</span>
+            <span
+              ><i class="fa-solid fa-umbrella-beach amber-icon"></i> 4 minutes
+              walk to Beach</span
+            >
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <a href="#map" class="action-card">
+            <div class="map-icon-box">
+              <i class="fa-solid fa-location-dot"></i>
+            </div>
+            <span>View Map</span>
+          </a>
+          <a href="#reviews" class="action-card">
+            <div class="rating-box">3.8/5</div>
+            <span>View Reviews</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Content Grid -->
+      <div class="main-grid">
+        <!-- Left: Photo Gallery -->
+        <div class="gallery-grid">
+          <div class="main-photo">
+            <img
+              src="<%= listing.image.url || listing.image %>"
+              alt="<%= listing.title %>"
+            />
+            <button class="next-arrow">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+            <div class="photo-overlay">
+              <span>Property Photos (107)</span>
+              <span
+                >View All <i class="fa-solid fa-circle-arrow-right"></i
+              ></span>
+            </div>
+          </div>
+
+          <div class="side-photos">
+            <div class="sub-photo">
+              <img src="https://unsplash.com" alt="Room" />
+              <div class="photo-overlay">
+                <span>Room (38)</span>
+                <i class="fa-solid fa-circle-arrow-right"></i>
+              </div>
+            </div>
+            <div class="sub-photo">
+              <img src="https://unsplash.com" alt="Swimming Pool" />
+              <div class="photo-overlay">
+                <span>Swimming Pool (6)</span>
+                <i class="fa-solid fa-circle-arrow-right"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Booking & Price Card -->
+        <div class="booking-card">
+          <div class="booking-details">
+            <div class="room-info">
+              <h2 class="room-title">Deluxe Room</h2>
+              <p class="occupancy">
+                <i class="fa-solid fa-user-group"></i> 2 Guests
+                <span class="divider">|</span>
+                <i class="fa-solid fa-bed"></i> 1 Room
+              </p>
+              <ul class="perks-list">
+                <li class="perk-pink">
+                  <i class="fa-solid fa-gift"></i> Couple Friendly
+                </li>
+                <li class="perk-green">
+                  <i class="fa-solid fa-mug-hot"></i> Free Breakfast Included
+                </li>
+              </ul>
+            </div>
+
+            <div class="price-info">
+              <div class="price">
+                ₹<%= listing.price ? listing.price.toLocaleString("en-IN") : "0"
+                %>
+              </div>
+              <div class="taxes">
+                +₹<%= listing.price ? Math.round(listing.price *
+                0.18).toLocaleString("en-IN") : "0" %> taxes & fees
+              </div>
+              <div class="per-night">Per Night</div>
+            </div>
+          </div>
+
+          <button class="cta-button">
+            VIEW 4 ROOM OPTIONS <i class="fa-solid fa-angles-down"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Bottom Summary & Description -->
+      <div class="bottom-summary">
+        <div class="summary-header">
+          <h3>About this stay</h3>
+          <p class="guests-tag">
+            <i class="fa-solid fa-users"></i> Upto 2 Guests
+          </p>
+        </div>
+        <p class="listing-desc"><%= listing.description %></p>
+      </div>
+    </div>
+  </body>
+</html>
