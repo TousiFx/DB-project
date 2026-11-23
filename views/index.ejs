@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Explore Stays</title>
+  <link href="https://googleapis.com" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="container">
+    <% for(listing of allLists) { %>
+    <div class="card">
+      <div class="img-wrapper">
+        <img src="<%= listing.image.url || listing.image %>" alt="<%= listing.title %>" />
+        <div class="price-badge">
+          ₹ <%= listing.price.toLocaleString("en-IN") %> <span>/ night</span>
+        </div>
+      </div>
+
+      <div class="card-content">
+        <div>
+          <h3 class="title"><%= listing.title %></h3>
+          <p class="description"><%= listing.description %></p>
+        </div>
+
+        <div class="location-row">
+          <span class="location-dot"></span>
+          <span><%= listing.location %>, <%= listing.country %></span>
+        </div>
+      </div>
+    </div>
+    <% } %>
+  </div>
+
+</body>
+
+</html>
