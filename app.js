@@ -57,6 +57,12 @@ app.put("/listing/:id", async (req, res) => {
   res.redirect(`/listing/${id}/page`);
 });
 
+app.delete("/listing/:id", async (req, res) => {
+  const { id } = req.params;
+  await Listing.findByIdAndDelete(id);
+  res.redirect(`/listing`);
+});
+
 app.post("/listing", async (req, res) => {
   const newListing = new Listing(req.body.listing);
   await newListing
