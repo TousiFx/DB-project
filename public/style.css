@@ -4,8 +4,10 @@
   padding: 0;
   font-family: "Plus Jakarta Sans", sans-serif;
 }
+
 a {
   text-decoration: none;
+  display: block;
 }
 
 body {
@@ -17,7 +19,7 @@ body {
   );
   color: #fafaf9;
   min-height: 100vh;
-  padding: 3rem 2rem;
+  padding: 3rem 2rem 6rem; /* Extra bottom padding so fixed button doesn't block last card */
 }
 
 .container {
@@ -26,6 +28,10 @@ body {
   gap: 2rem;
   max-width: 1280px;
   margin: 0 auto;
+}
+
+.card-link {
+  height: 100%;
 }
 
 .card {
@@ -37,6 +43,7 @@ body {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  height: 100%;
   transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
   box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
 }
@@ -133,4 +140,54 @@ body {
   background: #f59e0b;
   border-radius: 50%;
   box-shadow: 0 0 8px #f59e0b;
+}
+
+/* Fixed Floating Action Button */
+.fixed-btn-form {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 1000;
+}
+
+.new-btn {
+  background: linear-gradient(135deg, #f59e0b, #ea580c);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 14px 24px;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow:
+    0 10px 25px -5px rgba(245, 158, 11, 0.5),
+    0 8px 16px -6px rgba(0, 0, 0, 0.7);
+  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.new-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow:
+    0 14px 30px -5px rgba(245, 158, 11, 0.7),
+    0 10px 20px -6px rgba(0, 0, 0, 0.8);
+}
+
+.new-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+@media (max-width: 600px) {
+  .fixed-btn-form {
+    bottom: 1.25rem;
+    right: 1.25rem;
+  }
+
+  .new-btn {
+    padding: 12px 20px;
+    font-size: 0.9rem;
+  }
 }

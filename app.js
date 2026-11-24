@@ -24,6 +24,9 @@ async function main() {
 app.get("/", (req, res) => {
   res.send("Welcome to home page");
 });
+app.get("/listing/new", (req, res) => {
+  res.send("new");
+});
 
 app.get("/listing", async (req, res) => {
   const allList = await Listing.find({});
