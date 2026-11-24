@@ -1,11 +1,18 @@
+/* Import Plus Jakarta Sans from Google Fonts */
+@import url("https://googleapis.com");
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: "Plus Jakarta Sans", sans-serif;
 }
 
 body {
+  font-family:
+    "Plus Jakarta Sans",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
   background: radial-gradient(
     circle at top left,
     #1c1917,
@@ -14,10 +21,18 @@ body {
   );
   color: #fafaf9;
   min-height: 100vh;
+  min-height: 100dvh;
   padding: 2.5rem 1.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+/* Ensure form controls inherit custom font */
+input,
+textarea,
+button {
+  font-family: inherit;
 }
 
 .form-container {
@@ -33,17 +48,26 @@ body {
 }
 
 .back-link {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
   color: #a8a29e;
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 500;
   margin-bottom: 1.5rem;
+  border-radius: 6px;
   transition: color 0.2s ease;
 }
 
 .back-link:hover {
   color: #f59e0b;
+}
+
+.back-link:focus-visible {
+  outline: none;
+  color: #f59e0b;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.35);
 }
 
 .form-header {
@@ -112,8 +136,25 @@ textarea:focus {
   box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
 }
 
+/* Fix browser autofill overriding dark background */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #fafaf9;
+  -webkit-box-shadow: 0 0 0px 1000px #12100e inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Clean number input appearance for Price */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  opacity: 0.5;
+}
+
 textarea {
   resize: vertical;
+  min-height: 110px;
+  line-height: 1.5;
 }
 
 .submit-btn {
@@ -129,7 +170,9 @@ textarea {
   letter-spacing: 0.4px;
   cursor: pointer;
   box-shadow: 0 8px 20px -6px rgba(245, 158, 11, 0.45);
-  transition: all 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .submit-btn:hover {
@@ -139,6 +182,11 @@ textarea {
 
 .submit-btn:active {
   transform: translateY(0);
+}
+
+.submit-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.45);
 }
 
 @media (max-width: 600px) {

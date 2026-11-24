@@ -41,18 +41,27 @@ app.get("/listing/:id/page", async (req, res) => {
   res.render("page", { listing });
 });
 
-// Fixed: added leading "/"
 app.get("/listing/:id/edit", async (req, res) => {
   const { id } = req.params;
   const listing = await Listing.findById(id);
   res.render("edit", { listing });
 });
 
+app.put("/listing/:id", async (req, res) => {
+  let { id } = req.params;
+  await Listing.findByIdAndUpdate(
+    id,
+    { ...req.body.listing },
+    { runValidators: true },
+  );
+  res.redirect(`/listing/${id}/page`);
+});
+
 app.post("/listing", async (req, res) => {
   const newListing = new Listing(req.body.listing);
   await newListing
     .save()
-    .then((result) => {
+    .then(() => {
       res.redirect("/listing");
     })
     .catch((err) => {

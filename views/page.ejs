@@ -40,10 +40,9 @@
 
         <div class="header-actions">
           <a href="#map" class="action-card">
-            <div class="map-icon-box">
-              <i class="fa-solid fa-location-dot"></i>
-            </div>
-            <span>View Map</span>
+            <form method="get" action="/listing/<%=listing._id%>/edit">
+              <button class="edit-btn">Edit</button>
+            </form>
           </a>
           <a href="#reviews" class="action-card">
             <div class="rating-box">3.8/5</div>
