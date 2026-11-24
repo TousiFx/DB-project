@@ -33,6 +33,10 @@ app.get("/listing", async (req, res) => {
   const allList = await Listing.find({});
   res.render("index", { allLists: allList });
 });
+app.get("listing/:id/edit", (req, res) => {
+  const { id } = req.params;
+  res.render("edit", { id });
+});
 app.get("/listing/:id", async (req, res) => {
   const { id } = req.params;
   const listing = await Listing.findById(id);
