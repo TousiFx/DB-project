@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= listing.title %> - Details</title>
-    <link rel="stylesheet" href="/show.css" />
+    <link rel="stylesheet" href="/page.css" />
     <link rel="stylesheet" href="https://cloudflare.com" />
     <link href="https://googleapis.com" rel="stylesheet" />
   </head>
@@ -40,13 +40,47 @@
 
         <div class="header-actions">
           <a href="#map" class="action-card">
-            <form method="get" action="/listing/<%=listing._id%>/edit">
+            <form
+              method="get"
+              action="/listing/<%= listing._id %>?_method=DELETE"
+            >
               <button class="edit-btn">Edit</button>
             </form>
           </a>
           <a href="#reviews" class="action-card">
-            <div class="rating-box">3.8/5</div>
-            <span>View Reviews</span>
+            <button
+              class="btn-del"
+              onclick="document.getElementById('deletePopup').showModal()"
+            >
+              DEl
+            </button>
+            <dialog id="deletePopup" class="delete-modal">
+              <div class="modal-content">
+                <h3>Delete Listing?</h3>
+                <p>
+                  Are you sure you want to delete this listing? This action
+                  cannot be undone.
+                </p>
+
+                <div class="modal-actions">
+                  <form
+                    method="dialog"
+                    action="/listing/<%= listing._id %>/page"
+                  >
+                    <button type="submit" class="btn-cancel">Cancel</button>
+                  </form>
+
+                  <form
+                    action="/listing/<%= listing._id %>?_method=DELETE"
+                    method="POST"
+                  >
+                    <button type="submit" class="btn-confirm-delete">
+                      Confirm Delete
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </dialog>
           </a>
         </div>
       </div>
