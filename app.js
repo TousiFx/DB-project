@@ -6,6 +6,7 @@ const path = require("path");
 const methodOverride = require("method-override");
 
 const MONGO_ULR = "mongodb://127.0.0.1:27017/ReserveFlow";
+
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
@@ -25,6 +26,7 @@ async function main() {
 app.get("/", (req, res) => {
   res.send("Welcome to home page");
 });
+
 app.get("/listing/new", (req, res) => {
   res.render("new");
 });
@@ -33,18 +35,17 @@ app.get("/listing", async (req, res) => {
   const allList = await Listing.find({});
   res.render("index", { allLists: allList });
 });
-app.get("listing/:id/edit", (req, res) => {
-  const { id } = req.params;
-  res.render("edit", { id });
-});
-app.get("/listing/:id", async (req, res) => {
+app.get("/listing/:id/page", async (req, res) => {
   const { id } = req.params;
   const listing = await Listing.findById(id);
-  res.render("page", { listing, id });
+  res.render("page", { listing });
 });
 
-app.listen(8080, () => {
-  console.log("server is listing to port 8080");
+// Fixed: added leading "/"
+app.get("/listing/:id/edit", async (req, res) => {
+  const { id } = req.params;
+  const listing = await Listing.findById(id);
+  res.render("edit", { listing });
 });
 
 app.post("/listing", async (req, res) => {
@@ -57,4 +58,8 @@ app.post("/listing", async (req, res) => {
     .catch((err) => {
       err;
     });
+});
+
+app.listen(8080, () => {
+  console.log("server is listing to port 8080");
 });
