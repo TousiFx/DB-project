@@ -25,7 +25,7 @@ app.get("/", (req, res) => {
   res.send("Welcome to home page");
 });
 app.get("/listing/new", (req, res) => {
-  res.send("new");
+  res.render("new");
 });
 
 app.get("/listing", async (req, res) => {
@@ -40,4 +40,16 @@ app.get("/listing/:id", async (req, res) => {
 
 app.listen(8080, () => {
   console.log("server is listing to port 8080");
+});
+
+app.post("/listing", async (req, res) => {
+  const newListing = new Listing(req.body.listing);
+  await newListing
+    .save()
+    .then((result) => {
+      res.redirect("/listing");
+    })
+    .catch((err) => {
+      err;
+    });
 });
