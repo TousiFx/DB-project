@@ -29,10 +29,10 @@ app.get("/listing", async (req, res) => {
   const allList = await Listing.find({});
   res.render("index", { allLists: allList });
 });
-app.get("/listing/:id/page", async (req, res) => {
+app.get("/listing/:id", async (req, res) => {
   const { id } = req.params;
-  const allList = await Listing.find({});
-  res.render("page", { allLists: allList, id });
+  const listing = await Listing.findById(id);
+  res.render("page", { listing, id });
 });
 
 app.listen(8080, () => {

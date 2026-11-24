@@ -38,7 +38,7 @@ body {
   font-size: 0.9rem;
   font-weight: 500;
   margin-bottom: 1.5rem;
-  transition: color 0.2s;
+  transition: color 0.2s ease;
 }
 
 .back-link:hover {
@@ -65,6 +65,9 @@ body {
 }
 
 .star-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
   background: rgba(245, 158, 11, 0.15);
   border: 1px solid rgba(245, 158, 11, 0.35);
   color: #fbbf24;
@@ -82,6 +85,7 @@ body {
   font-weight: 700;
   color: #ffffff;
   margin-bottom: 10px;
+  line-height: 1.25;
 }
 
 .location-info {
@@ -118,11 +122,12 @@ body {
 /* Top Right Map & Reviews */
 .header-actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 12px;
 }
 
 .action-card {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 10px;
   padding: 8px 14px;
@@ -166,13 +171,14 @@ body {
 .main-grid {
   display: grid;
   grid-template-columns: 1.8fr 1fr;
+  align-items: start;
   gap: 24px;
 }
 
 /* Photo Gallery */
 .gallery-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr;
   gap: 12px;
   height: 360px;
 }
@@ -180,6 +186,8 @@ body {
 .main-photo,
 .sub-photo {
   position: relative;
+  width: 100%;
+  height: 100%;
   border-radius: 16px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -191,6 +199,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
   transition: transform 0.5s ease;
 }
 
@@ -217,12 +226,18 @@ body {
   width: 34px;
   height: 34px;
   border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  transition: border-color 0.2s;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
 }
 
 .next-arrow:hover {
   border-color: #f59e0b;
+  background: rgba(12, 10, 9, 0.9);
 }
 
 .photo-overlay {
@@ -232,7 +247,7 @@ body {
   right: 0;
   background: linear-gradient(transparent, rgba(5, 5, 5, 0.9));
   color: #fafaf9;
-  padding: 20px 14px 12px;
+  padding: 24px 14px 12px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -249,12 +264,12 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: fit-content;
 }
 
 .booking-details {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   gap: 12px;
   margin-bottom: 24px;
 }
@@ -267,6 +282,10 @@ body {
 }
 
 .occupancy {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
   font-size: 13px;
   color: #a8a29e;
   margin-bottom: 16px;
@@ -278,6 +297,12 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.perks-list li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .perk-pink {
@@ -292,18 +317,20 @@ body {
 
 .price-info {
   text-align: right;
+  flex-shrink: 0;
 }
 
 .price {
   font-size: 26px;
   font-weight: 700;
   color: #34d399;
+  line-height: 1.1;
 }
 
 .taxes {
   font-size: 12px;
   color: #a8a29e;
-  margin-top: 4px;
+  margin-top: 6px;
 }
 
 .per-night {
@@ -347,6 +374,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
   margin-bottom: 10px;
 }
 
@@ -378,18 +407,45 @@ body {
   .main-grid {
     grid-template-columns: 1fr;
   }
+
+  .gallery-grid {
+    height: 320px;
+  }
 }
 
 @media (max-width: 600px) {
+  body {
+    padding: 1rem 0.75rem;
+  }
+
+  .listing-container {
+    padding: 1.25rem 1rem;
+    border-radius: 18px;
+  }
+
+  .hotel-name {
+    font-size: 22px;
+  }
+
   .gallery-grid {
     grid-template-columns: 1fr;
     height: auto;
   }
+
   .main-photo {
     height: 240px;
   }
+
   .side-photos {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 130px;
+  }
+
+  .booking-details {
+    flex-direction: column;
+  }
+
+  .price-info {
+    text-align: left;
   }
 }

@@ -12,7 +12,7 @@
 
   <div class="container">
     <% for(let listing of allLists) { %>
-    <a href="/listing/<%=listing._id%>/page">
+    <a href="/listing/<%=listing._id%>">
       <div class="card">
         <div class="img-wrapper">
           <img src="<%= listing.image.url || listing.image %>" alt="<%= listing.title %>" />
